@@ -5,20 +5,26 @@ import List from './List';
 import Form from './Form';
 
 class App extends React.Component {
-    state = {
-        usersList: [],
-    }
+	state = {
+		usersList: ['Test'],
+	};
 
-    render() {
-        const  { usersList } = this.state;
+	submitHandler = (name) => {
+		this.setState((state) => {
+			return { usersList: [name, ...state.usersList] };
+		});
+	};
 
-        return (
-            <section>
-                <Form />
-                <List items={ usersList } />
-            </section>
-        )
-    }
+	render() {
+		const { usersList } = this.state;
+
+		return (
+			<section>
+				<Form submitHandler={this.submitHandler} />
+				<List items={usersList} />
+			</section>
+		);
+	}
 }
 
 const root = createRoot(document.querySelector('#root'));
