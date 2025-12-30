@@ -2,7 +2,8 @@ import React from 'react';
 
 class File extends React.Component {
     render() {
-        return <input type="file" multiple />
+        const {changeHandler} = this.props;
+        return <input type="file" multiple onChange={changeHandler} />
     }
 }
 
