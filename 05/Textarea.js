@@ -1,9 +1,10 @@
 import React from 'react';
 
-class Textarea extends React.Component {
-    render() {
-        return <textarea></textarea>
-    }
-}
+const Textarea = React.forwardRef((props, ref) => {
+	const { content, changeHandler } = props;
+	return (
+		<textarea ref={ref} onChange={changeHandler} value={content}></textarea>
+	);
+});
 
 export default Textarea;
