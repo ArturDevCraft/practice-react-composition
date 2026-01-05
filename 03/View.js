@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Category({ children }) {
+function View({ title, children }) {
 	return (
 		<section>
-			<h2>Category</h2>
+			<h2>{title}</h2>
 			<ul>{children}</ul>
 		</section>
 	);
 }
 
-export default Category;
+export default View;

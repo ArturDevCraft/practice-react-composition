@@ -1,8 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
-import Category from './Category';
-import Cart from './Cart';
+import View from './View';
 import Product from './Product';
 import data from './data.json';
 
@@ -28,25 +27,17 @@ class App extends React.Component {
 
 		return data.map((item) => {
 			const isCart = cart.includes(item.id);
-			if (type == 'category') {
+			if (type == 'cart' && !isCart) {
+			} else {
 				return (
 					<Product
 						key={item.id}
-						isCategory={true}
+						isCategory={type == 'category' ? true : false}
 						isCart={isCart}
 						data={item}
-						handleClick={this.addToCart}
-					/>
-				);
-			}
-			if (type === 'cart' && isCart) {
-				return (
-					<Product
-						key={item.id}
-						isCategory={false}
-						isCart={isCart}
-						data={item}
-						handleClick={this.removeFromCart}
+						handleClick={
+							type == 'category' ? this.addToCart : this.removeFromCart
+						}
 					/>
 				);
 			}
@@ -56,8 +47,8 @@ class App extends React.Component {
 	render() {
 		return (
 			<section>
-				<Category>{this.prepareList({ type: 'category' })}</Category>
-				<Cart>{this.prepareList({ type: 'cart' })}</Cart>
+				<View title="Category">{this.prepareList({ type: 'category' })}</View>
+				<View title="Cart">{this.prepareList({ type: 'cart' })}</View>
 			</section>
 		);
 	}
