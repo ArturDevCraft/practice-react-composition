@@ -27,8 +27,7 @@ class App extends React.Component {
 
 		return data.map((item) => {
 			const isCart = cart.includes(item.id);
-			if (type == 'cart' && !isCart) {
-			} else {
+			if (!(type == 'cart' && !isCart)) {
 				return (
 					<Product
 						key={item.id}
